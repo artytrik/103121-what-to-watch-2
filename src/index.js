@@ -22,8 +22,14 @@ const init = () => {
     }
   ];
 
+  const onTitleClick = () => {
+  };
+
   ReactDOM.render(
-      <App moviesList = {moviesListData}/>,
+      <App
+        moviesList = {moviesListData}
+        onTitleClick = {onTitleClick}
+      />,
       document.querySelector(`#root`)
   );
 };
