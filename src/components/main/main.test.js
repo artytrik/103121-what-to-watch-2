@@ -9,6 +9,7 @@ it(`Main correctly renders after relaunch`, () => {
         name: ``,
         genre: `Comedy`
       }]}
+      onTitleClick = {jest.fn()}
     />)
     .toJSON();
 

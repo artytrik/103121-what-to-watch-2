@@ -6,9 +6,10 @@ it(`App correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<App
       moviesList = {[{
-        name: `Aviator`,
+        name: ``,
         genre: `Comedy`
       }]}
+      onTitleClick = {jest.fn()}
     />)
     .toJSON();
 
