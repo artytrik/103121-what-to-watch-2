@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {GENRES_LIST} from '../../utils.js';
+import MoviesList from '../movies-list/movies-list.jsx';
 
-export const Main = (props) => {
-  const {movies, onTitleClick} = props;
+const Main = (props) => {
+  const {movies} = props;
 
   return <div className="main-wrapper">
     <section className="movie-card">
@@ -98,16 +98,9 @@ export const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {movies.map((movie, i) => <article className="small-movie-card catalog__movies-card" key={movie.name + i}>
-            <div className="small-movie-card__image">
-              <img src={movie.preview} alt={movie.name} width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html" onClick={onTitleClick}>{movie.name}</a>
-            </h3>
-          </article>)}
-        </div>
+        <MoviesList
+          movies={movies}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -131,9 +124,7 @@ export const Main = (props) => {
   </div>;
 };
 Main.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.oneOf(GENRES_LIST).isRequired
-  })),
-  onTitleClick: PropTypes.func.isRequired
+  movies: PropTypes.array.isRequired
 };
+
+export default Main;
