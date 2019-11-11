@@ -9,7 +9,6 @@ it(`Header has been correctly clicked`, () => {
   const clickHandler = jest.fn();
   const preventDefault = jest.fn();
   const movieCard = shallow(<MovieCard
-    key = {``}
     name = {``}
     preview = {``}
     cardHoverHandler = {jest.fn()}

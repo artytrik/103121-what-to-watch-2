@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesList correctly renders after relaunch 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onMouseOver={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <img
+        alt=""
+        height="175"
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+        href="#"
+        onClick={[Function]}
+      >
+        
+      </a>
+    </h3>
+  </article>
+</div>
+`;
