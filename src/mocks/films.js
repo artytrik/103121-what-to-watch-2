@@ -11,7 +11,7 @@ export const moviesListData = [
     name: `Bohemian Rhapsody`,
     genre: `Documentary`,
     preview: `img/bohemian-rhapsody.jpg`,
-    link: https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm
+    link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ export const moviesListData = [
     name: `Aviator`,
     genre: `Drama`,
     preview: `img/aviator.jpg`,
-    link: https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm
+    link: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     id: 5,
