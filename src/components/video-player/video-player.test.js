@@ -13,7 +13,11 @@ it(`VideoPlayer correctly renders after relaunch`, () => {
       isPlaying = {false}
       src = {movie.link}
       poster = {movie.preview}
-    />)
+    />, {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

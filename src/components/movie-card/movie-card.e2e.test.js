@@ -5,14 +5,24 @@ import MovieCard from './movie-card.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
+const movie = {
+  name: `Fantastic Beasts: The Crimes of Grindelwald`,
+  preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+};
+
 it(`Header has been correctly clicked`, () => {
   const clickHandler = jest.fn();
   const preventDefault = jest.fn();
   const movieCard = shallow(<MovieCard
-    name = {``}
-    preview = {``}
+    id = {1}
+    name = {movie.name}
+    preview = {movie.preview}
+    link = {movie.link}
     cardHoverHandler = {jest.fn()}
+    cardLeaveHandler = {jest.fn()}
     cardHeaderClickHandler = {clickHandler}
+    isPlaying = {false}
   />);
 
   const titleHeaders = movieCard.find(`.small-movie-card__link`);

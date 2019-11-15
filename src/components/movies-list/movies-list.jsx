@@ -36,13 +36,13 @@ class MoviesList extends React.PureComponent {
   }
 
   cardLeaveHandler() {
-    this.setState = {
+    this.setState({
       activeCard: -1,
       movie: {
         name: ``,
         src: ``
       }
-    };
+    });
     clearTimeout(this.timer);
   }
 

@@ -14,7 +14,11 @@ it(`MoviesList correctly renders after relaunch`, () => {
           link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
         }
       ]}
-    />)
+    />, {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();
