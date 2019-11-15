@@ -8,6 +8,7 @@ class MoviesList extends React.PureComponent {
     super(props);
 
     this.state = {
+      activeCard: -1,
       movie: {
         name: ``,
         src: ``
@@ -16,18 +17,33 @@ class MoviesList extends React.PureComponent {
 
     this.cardHoverHandler = this.cardHoverHandler.bind(this);
     this.cardHeaderClickHandler = this.cardHeaderClickHandler.bind(this);
+    this.cardLeaveHandler = this.cardLeaveHandler.bind(this);
   }
 
   cardHeaderClickHandler() {
   }
 
-  cardHoverHandler(name, preview) {
+  cardHoverHandler(id, name, preview) {
     this.setState({
       movie: {
         name,
         preview
       }
     });
+    this.timer = setTimeout(() => {
+      this.setState({activeCard: id});
+    }, 1000);
+  }
+
+  cardLeaveHandler() {
+    this.state = {
+      activeCard: -1,
+      movie: {
+        name: ``,
+        src: ``
+      }
+    };
+    clearTimeout(this.timer);
   }
 
   render() {
@@ -35,13 +51,17 @@ class MoviesList extends React.PureComponent {
 
     return (<div className="catalog__movies-list">
       {movies.map((movie, i) => {
-        const {name, preview} = movie;
+        const {name, preview, id, link} = movie;
         return <MovieCard
-          key={`movie-${i}`}
+          id={i}
+          key={id}
           name={name}
           preview={preview}
+          link={link}
           cardHoverHandler={this.cardHoverHandler}
           cardHeaderClickHandler={this.cardHeaderClickHandler}
+          cardLeaveHandler={this.cardLeaveHandler}
+          isPlaying={i === this.state.activeCard}
         />;
       })}
     </div>);
@@ -49,9 +69,11 @@ class MoviesList extends React.PureComponent {
 }
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     genre: PropTypes.oneOf(GENRES_LIST).isRequired,
-    preview: PropTypes.string.isRequired
+    preview: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired
   }))
 };
 
