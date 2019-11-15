@@ -36,7 +36,7 @@ class MoviesList extends React.PureComponent {
   }
 
   cardLeaveHandler() {
-    this.state = {
+    this.setState = {
       activeCard: -1,
       movie: {
         name: ``,
@@ -68,13 +68,13 @@ class MoviesList extends React.PureComponent {
   }
 }
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.oneOf(GENRES_LIST).isRequired,
-    preview: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired
-  }))
+  movies: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    genre: PropTypes.oneOf(GENRES_LIST),
+    preview: PropTypes.string,
+    link: PropTypes.string
+  })).isRequired
 };
 
 export default MoviesList;

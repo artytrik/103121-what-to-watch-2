@@ -27,7 +27,8 @@ MovieCard.propTypes = {
   link: PropTypes.string.isRequired,
   cardHoverHandler: PropTypes.func.isRequired,
   cardLeaveHandler: PropTypes.func.isRequired,
-  cardHeaderClickHandler: PropTypes.func.isRequired
+  cardHeaderClickHandler: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default MovieCard;

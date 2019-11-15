@@ -7,9 +7,11 @@ it(`MoviesList correctly renders after relaunch`, () => {
     .create(<MoviesList
       movies = {[
         {
-          name: ``,
+          id: `id1`,
+          name: `Fantastic Beasts: The Crimes of Grindelwald`,
           genre: `Comedy`,
-          preview: ``
+          preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+          link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
         }
       ]}
     />)

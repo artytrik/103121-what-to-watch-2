@@ -9,7 +9,7 @@ class VideoPlayer extends React.PureComponent {
 
     this.state = {
       isPlaying: props.isPlaying
-    }
+    };
   }
 
   render() {
