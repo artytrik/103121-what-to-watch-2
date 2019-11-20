@@ -1,24 +1,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieCard from './movie-card.jsx';
+import VideoPlayer from './video-player.jsx';
 
 const movie = {
-  name: `Fantastic Beasts: The Crimes of Grindelwald`,
   preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 };
 
-it(`MovieCard correctly renders after relaunch`, () => {
+it(`VideoPlayer correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<MovieCard
-      id = {1}
-      name = {movie.name}
-      preview = {movie.preview}
-      link = {movie.link}
-      cardHoverHandler = {jest.fn()}
-      cardHeaderClickHandler = {jest.fn()}
-      cardLeaveHandler = {jest.fn()}
+    .create(<VideoPlayer
       isPlaying = {false}
+      src = {movie.link}
+      poster = {movie.preview}
     />, {
       createNodeMock: () => {
         return {};
