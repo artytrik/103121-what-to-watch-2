@@ -16,11 +16,20 @@ it(`VideoPlayer has pause and play state`, () => {
     src = {movie.link}
     poster = {movie.preview}
   />);
-  window.HTMLMediaElement.prototype.load = () => {};
-  window.HTMLMediaElement.prototype.play = () => {};
-  window.HTMLMediaElement.prototype.pause = () => {};
+  const playStub = jest
+    .spyOn(window.HTMLMediaElement.prototype, `play`)
+    .mockImplementation(() => {});
+  const loadStub = jest
+    .spyOn(window.HTMLMediaElement.prototype, `load`)
+    .mockImplementation(() => {});
 
-  expect(videoPlayer.isPlaying).toBe(false);
+  expect(videoPlayer.props().isPlaying).toBe(false);
+
   videoPlayer.setProps({isPlaying: true});
-  expect(videoPlayer.isPlaying).toBe(true);
+
+  expect(playStub).toHaveBeenCalledTimes(1);
+
+  videoPlayer.setProps({isPlaying: false});
+
+  expect(loadStub).toHaveBeenCalledTimes(1);
 });
