@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStore} from 'rredux';
+import {createStore} from 'redux';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
 import {moviesListData} from './mocks/films.js';

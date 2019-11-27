@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
 
 const Main = (props) => {
-  const {movies} = props;
+  const {movies, clickFilterHandler} = props;
 
   return <div className="main-wrapper">
     <section className="movie-card">
@@ -65,7 +65,10 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <GenresList></GenresList>
+        <GenresList
+          movies={movies}
+          clickFilterHandler={clickFilterHandler}
+        />
 
         <MoviesList
           movies={movies}

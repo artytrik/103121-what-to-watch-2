@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
-import { ActionCreator } from '../../reducer.js';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 
 const App = (props) => {
   const {moviesList} = props;
 
   return <Main
     movies = {moviesList}
+    clickFilterHandler={clickFilterHandler}
   />;
 };
 
@@ -23,7 +25,9 @@ const mapDispatchToProps = (dispatch) = ({
 });
 
 App.propTypes = {
-  moviesList: PropTypes.array.isRequired
+  moviesList: PropTypes.array.isRequired,
+  clickFilterHandler: PropTypes.func
 };
 
-export default App;
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

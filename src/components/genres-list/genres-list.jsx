@@ -1,7 +1,7 @@
 import React from 'react';
 import {moviesListData} from './mocks/films.js';
 
-class ListGenres extends React.PureComponent {
+class GenresList extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,13 @@ class ListGenres extends React.PureComponent {
   };
 
   onFilterClick(evt) {
+    const {clickFilterHandler} = this.props;
+    evt.preventDefault();
 
+    clickFilterHandler(evt.target.textContent)
+    this.setState({
+      activeFilter: evt.target.textContent
+    });
   }
 
   render() {
@@ -38,4 +44,4 @@ class ListGenres extends React.PureComponent {
   }
 }
 
-export default ListGenres;
+export default GenresList;
