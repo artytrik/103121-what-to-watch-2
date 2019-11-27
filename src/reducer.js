@@ -5,7 +5,7 @@ const initialState = {
   movies: moviesListData
 };
 
-const getMovies = (genre, movies) => {
+const getMovies = (movies, genre) => {
   if (genre === `All genres`) {
     return movies;
   }

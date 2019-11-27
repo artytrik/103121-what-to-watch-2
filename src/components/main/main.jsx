@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
+import GenresList from '../genres-list/genres-list.jsx';
 
 const Main = (props) => {
   const {movies, clickFilterHandler} = props;
@@ -96,7 +97,8 @@ const Main = (props) => {
   </div>;
 };
 Main.propTypes = {
-  movies: PropTypes.array.isRequired
+  movies: PropTypes.array.isRequired,
+  clickFilterHandler: PropTypes.func
 };
 
 export default Main;
