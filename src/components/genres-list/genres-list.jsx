@@ -7,9 +7,6 @@ class GenresList extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeFilter: `All genres`
-    };
     this.onFilterClick = this.onFilterClick.bind(this);
   }
 
@@ -35,7 +32,7 @@ class GenresList extends React.PureComponent {
   render() {
     return <ul className="catalog__genres-list">
       {this.getGenres().map((genre) => {
-        const className = this.state.activeFilter === genre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`;
+        const className = this.props.currentGenre === genre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`;
         return (
           <li
             className={className}
@@ -56,7 +53,8 @@ GenresList.propTypes = {
     preview: PropTypes.string,
     link: PropTypes.string
   })).isRequired,
-  clickFilterHandler: PropTypes.func
+  clickFilterHandler: PropTypes.func,
+  currentGenre: PropTypes.string.isRequired
 };
 
 export default GenresList;

@@ -2,48 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 import {GENRES_LIST} from '../../utils.js';
+import withActiveItem from '../../hocs/with-active-item.jsx';
 
+const MovieCardWrapped = withActiveItem(MovieCard);
 class MoviesList extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeCard: -1,
-      movie: {
-        name: ``,
-        src: ``
-      }
-    };
-
-    this.cardHoverHandler = this.cardHoverHandler.bind(this);
     this.cardHeaderClickHandler = this.cardHeaderClickHandler.bind(this);
-    this.cardLeaveHandler = this.cardLeaveHandler.bind(this);
   }
 
   cardHeaderClickHandler() {
-  }
-
-  cardHoverHandler(id, name, preview) {
-    this.setState({
-      movie: {
-        name,
-        preview
-      }
-    });
-    this.timer = setTimeout(() => {
-      this.setState({activeCard: id});
-    }, 1000);
-  }
-
-  cardLeaveHandler() {
-    this.setState({
-      activeCard: -1,
-      movie: {
-        name: ``,
-        src: ``
-      }
-    });
-    clearTimeout(this.timer);
   }
 
   render() {
@@ -52,16 +21,14 @@ class MoviesList extends React.PureComponent {
     return (<div className="catalog__movies-list">
       {movies.map((movie, i) => {
         const {name, preview, id, link} = movie;
-        return <MovieCard
+        return <MovieCardWrapped
           id={i}
           key={id}
           name={name}
           preview={preview}
           link={link}
-          cardHoverHandler={this.cardHoverHandler}
+          isPlaying={false}
           cardHeaderClickHandler={this.cardHeaderClickHandler}
-          cardLeaveHandler={this.cardLeaveHandler}
-          isPlaying={i === this.state.activeCard}
         />;
       })}
     </div>);

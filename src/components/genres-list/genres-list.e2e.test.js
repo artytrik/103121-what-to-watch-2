@@ -16,6 +16,7 @@ it(`Filter has been correctly clicked`, () => {
       }]
     }
     clickFilterHandler={clickFilterHandler}
+    currneGenre={`All genres`}
   />);
 
   componentListLinksGenre.find(`.catalog__genres-link`).at(0).simulate(`click`, {

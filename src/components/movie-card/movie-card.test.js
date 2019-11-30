@@ -18,7 +18,7 @@ it(`MovieCard correctly renders after relaunch`, () => {
       cardHoverHandler = {jest.fn()}
       cardHeaderClickHandler = {jest.fn()}
       cardLeaveHandler = {jest.fn()}
-      isPlaying = {false}
+      isActive = {false}
     />, {
       createNodeMock: () => {
         return {};
