@@ -22,7 +22,7 @@ it(`Header has been correctly clicked`, () => {
     cardHoverHandler = {jest.fn()}
     cardLeaveHandler = {jest.fn()}
     cardHeaderClickHandler = {clickHandler}
-    isPlaying = {false}
+    isActive = {false}
   />);
 
   const titleHeaders = movieCard.find(`.small-movie-card__link`);

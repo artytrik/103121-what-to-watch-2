@@ -9,7 +9,7 @@ class MovieCard extends React.PureComponent {
   }
 
   render() {
-    const {id, name, preview, link, cardHeaderClickHandler, onEnter, onLeave, isActive} = this.props;
+    const {name, preview, link, cardHeaderClickHandler, onEnter, onLeave, isActive} = this.props;
 
     return <article className="small-movie-card catalog__movies-card"
       onMouseEnter={() => {
@@ -33,14 +33,17 @@ class MovieCard extends React.PureComponent {
       </h3>
     </article>;
   }
-};
+}
+
 MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired
+  isActive: PropTypes.bool.isRequired,
+  onEnter: PropTypes.func,
+  onLeave: PropTypes.func
 };
 
 export default MovieCard;

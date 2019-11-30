@@ -5,7 +5,7 @@ import GenresList from './genres-list.jsx';
 it(`GenresList correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<GenresList
-      movies = {[
+      movies={[
         {
           id: `id1`,
           name: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -15,6 +15,7 @@ it(`GenresList correctly renders after relaunch`, () => {
         }
       ]}
       clickFilterHandler={jest.fn()}
+      currneGenre={`All genres`}
     />);
 
   expect(tree).toMatchSnapshot();

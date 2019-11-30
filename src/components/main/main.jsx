@@ -99,7 +99,8 @@ const Main = (props) => {
 };
 Main.propTypes = {
   movies: PropTypes.array.isRequired,
-  clickFilterHandler: PropTypes.func
+  clickFilterHandler: PropTypes.func,
+  currentGenre: PropTypes.string.isRequired
 };
 
 export default Main;

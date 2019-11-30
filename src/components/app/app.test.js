@@ -14,7 +14,8 @@ const movies = [
 it(`App correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<App
-      moviesList = {movies}
+      moviesList={movies}
+      currentGenre={`All genres`}
     />, {
       createNodeMock: () => {
         return {};

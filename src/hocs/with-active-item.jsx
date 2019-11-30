@@ -16,13 +16,13 @@ const withActiveItem = (Component) => {
     itemEnterHandler() {
       this.setState({
         isActive: true
-      })
+      });
     }
 
     itemLeaveHandler() {
       this.setState({
         isActive: false
-      })
+      });
     }
 
     render() {
@@ -39,6 +39,6 @@ const withActiveItem = (Component) => {
   WithActiveItem.propTypes = {};
 
   return WithActiveItem;
-}
+};
 
 export default withActiveItem;

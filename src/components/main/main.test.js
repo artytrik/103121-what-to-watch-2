@@ -14,7 +14,8 @@ const movies = [
 it(`Main correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<Main
-      movies = {movies}
+      movies={movies}
+      currentGenre={`All genres`}
     />, {
       createNodeMock: () => {
         return {};
