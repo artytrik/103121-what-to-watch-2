@@ -2,18 +2,28 @@ import React from 'react';
 import {createStore} from 'redux';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
-import {moviesListData} from './mocks/films.js';
-import {reducer} from './reducer.js';
+import {reducer, Operation} from './reducer.js';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import configureApi from './api.js';
+import {applyMiddleware} from 'redux';
+import {compose} from 'recompose';
 
 const init = () => {
+  const api = configureApi((...args) => store.dispatch(...args));
+
   const store = createStore(
       reducer,
-      window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+      compose(
+          applyMiddleware(thunk.withExtraArgument(api)),
+          window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+      )
   );
+
+  store.dispatch(Operation.loadMovies());
+
   ReactDOM.render(<Provider store={store}>
     <App
-      moviesList = {moviesListData}
     />
   </Provider>,
   document.querySelector(`#root`)

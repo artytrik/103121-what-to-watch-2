@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {moviesListData} from '../../mocks/films.js';
-import {GENRES_LIST} from '../../utils.js';
 
 class GenresList extends React.PureComponent {
   constructor(props) {
@@ -11,9 +9,10 @@ class GenresList extends React.PureComponent {
   }
 
   getGenres() {
+    const {initialMovies} = this.props;
     const genres = new Set();
     genres.add(`All genres`);
-    moviesListData.forEach((movie) => {
+    initialMovies.forEach((movie) => {
       genres.add(movie.genre);
     });
     return [...genres];
@@ -40,18 +39,30 @@ class GenresList extends React.PureComponent {
             <a href="#" className="catalog__genres-link" onClick={this.onFilterClick}>{genre}</a>
           </li>
         );
-      })};
+      })}
     </ul>;
   }
 }
 
 GenresList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    genre: PropTypes.oneOf(GENRES_LIST),
+  initialMovies: PropTypes.arrayOf(PropTypes.exact({
+    backgroundColor: PropTypes.string,
+    backgroundImage: PropTypes.string,
+    description: PropTypes.string,
+    director: PropTypes.string,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string,
     preview: PropTypes.string,
-    link: PropTypes.string
+    link: PropTypes.string,
+    rating: PropTypes.number,
+    date: PropTypes.number,
+    time: PropTypes.number,
+    scoresCount: PropTypes.number,
+    actors: PropTypes.array,
+    video: PropTypes.string
   })).isRequired,
   clickFilterHandler: PropTypes.func,
   currentGenre: PropTypes.string.isRequired

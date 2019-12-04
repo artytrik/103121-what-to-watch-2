@@ -7,7 +7,7 @@ it(`MoviesList correctly renders after relaunch`, () => {
     .create(<MoviesList
       movies = {[
         {
-          id: `id1`,
+          id: 1,
           name: `Fantastic Beasts: The Crimes of Grindelwald`,
           genre: `Comedy`,
           preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,

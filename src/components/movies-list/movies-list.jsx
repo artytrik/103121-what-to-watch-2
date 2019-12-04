@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
-import {GENRES_LIST} from '../../utils.js';
 import withActiveItem from '../../hocs/with-active-item.jsx';
 
 const MovieCardWrapped = withActiveItem(MovieCard);
@@ -36,11 +35,23 @@ class MoviesList extends React.PureComponent {
 }
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    genre: PropTypes.oneOf(GENRES_LIST),
-    preview: PropTypes.string,
-    link: PropTypes.string
+    backgroundColor: PropTypes.string,
+    backgroundImage: PropTypes.string,
+    description: PropTypes.string,
+    director: PropTypes.string,
+    genre: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    poster: PropTypes.string,
+    preview: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    rating: PropTypes.number,
+    date: PropTypes.number,
+    time: PropTypes.number,
+    scoresCount: PropTypes.number,
+    actors: PropTypes.array,
+    video: PropTypes.string
   })).isRequired
 };
 

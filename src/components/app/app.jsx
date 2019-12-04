@@ -5,10 +5,11 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 
 const App = (props) => {
-  const {moviesList, clickFilterHandler, currentGenre} = props;
+  const {initialMoviesList, moviesList, clickFilterHandler, currentGenre} = props;
 
   return <Main
-    movies = {moviesList}
+    movies={moviesList}
+    initialMovies={initialMoviesList}
     clickFilterHandler={clickFilterHandler}
     currentGenre={currentGenre}
   />;
@@ -16,7 +17,8 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   moviesList: state.movies,
-  currentGenre: state.genre
+  currentGenre: state.genre,
+  initialMoviesList: state.initialMovies
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 App.propTypes = {
   moviesList: PropTypes.array.isRequired,
+  initialMoviesList: PropTypes.array.isRequired,
   clickFilterHandler: PropTypes.func,
   currentGenre: PropTypes.string.isRequired
 };
