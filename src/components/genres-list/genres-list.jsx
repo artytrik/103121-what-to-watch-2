@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {moviesListData} from '../../mocks/films.js';
 import {GENRES_LIST} from '../../utils.js';
 
 class GenresList extends React.PureComponent {
@@ -11,9 +10,10 @@ class GenresList extends React.PureComponent {
   }
 
   getGenres() {
+    const {initialMovies} = this.props;
     const genres = new Set();
     genres.add(`All genres`);
-    moviesListData.forEach((movie) => {
+    initialMovies.forEach((movie) => {
       genres.add(movie.genre);
     });
     return [...genres];
@@ -40,8 +40,8 @@ class GenresList extends React.PureComponent {
             <a href="#" className="catalog__genres-link" onClick={this.onFilterClick}>{genre}</a>
           </li>
         );
-      })};
-    </ul>;
+      })}
+    </ul>
   }
 }
 

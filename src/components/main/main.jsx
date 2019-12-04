@@ -4,7 +4,7 @@ import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
 
 const Main = (props) => {
-  const {movies, clickFilterHandler, currentGenre} = props;
+  const {movies, initialMovies, clickFilterHandler, currentGenre} = props;
 
   return <div className="main-wrapper">
     <section className="movie-card">
@@ -68,6 +68,7 @@ const Main = (props) => {
 
         <GenresList
           movies={movies}
+          initialMovies={initialMovies}
           clickFilterHandler={clickFilterHandler}
           currentGenre={currentGenre}
         />
