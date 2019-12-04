@@ -15,8 +15,17 @@ it(`Filter has been correctly clicked`, () => {
         link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
       }]
     }
+    initialMovies={
+      [{
+        id: 1,
+        genre: `Comedy`,
+        name: `Fantastic Beasts: The Crimes of Grindelwald`,
+        preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+        link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      }]
+    }
     clickFilterHandler={clickFilterHandler}
-    currneGenre={`All genres`}
+    currentGenre={`All genres`}
   />);
 
   componentListLinksGenre.find(`.catalog__genres-link`).at(0).simulate(`click`, {

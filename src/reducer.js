@@ -21,22 +21,22 @@ const convertMovie = (movie) => {
     rating: movie.rating,
     date: movie.released,
     time: movie.run_time,
-    rating: movie.scores_count.toString(),
+    scoresCount: movie.scores_count,
     actors: movie.starring,
     video: movie.video_link
   };
   return convertedMovie;
-}
+};
 
 const Operation = {
   loadMovies: () => (dispatch, _, api) => {
     return api.get(`films`)
       .then((response) => {
-       const convertedMovies = response.data.map((movie) => convertMovie(movie));
-       dispatch(ActionCreator.loadMovies(convertedMovies));
+        const convertedMovies = response.data.map((movie) => convertMovie(movie));
+        dispatch(ActionCreator.loadMovies(convertedMovies));
       });
   }
-}
+};
 
 const getMovies = (genre, movies) => {
   if (genre === `All genres`) {

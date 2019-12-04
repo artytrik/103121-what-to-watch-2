@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 App.propTypes = {
   moviesList: PropTypes.array.isRequired,
+  initialMoviesList: PropTypes.array.isRequired,
   clickFilterHandler: PropTypes.func,
   currentGenre: PropTypes.string.isRequired
 };

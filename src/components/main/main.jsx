@@ -67,7 +67,6 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <GenresList
-          movies={movies}
           initialMovies={initialMovies}
           clickFilterHandler={clickFilterHandler}
           currentGenre={currentGenre}
@@ -100,6 +99,7 @@ const Main = (props) => {
 };
 Main.propTypes = {
   movies: PropTypes.array.isRequired,
+  initialMovies: PropTypes.array.isRequired,
   clickFilterHandler: PropTypes.func,
   currentGenre: PropTypes.string.isRequired
 };
