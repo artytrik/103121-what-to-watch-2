@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SignIn = ({submitHandler}) => {
   const onSubmit = (evt) => {
@@ -53,6 +54,10 @@ const SignIn = ({submitHandler}) => {
       </div>
     </footer>
   </div>;
+};
+
+SignIn.propTypes = {
+  submitHandler: PropTypes.func.isRequired
 };
 
 export default SignIn;
