@@ -29,7 +29,7 @@ it(`Reducer correctly returns filtered movies`, () => {
       reducer(
           {
             genre: `All genres`,
-            films: moviesListData,
+            movies: moviesListData,
             initialMovies: moviesListData
           },
           {
@@ -39,7 +39,7 @@ it(`Reducer correctly returns filtered movies`, () => {
       )
   ).toEqual({
     genre: `All genres`,
-    films: moviesListData,
+    movies: moviesListData,
     initialMovies: moviesListData
   });
 });

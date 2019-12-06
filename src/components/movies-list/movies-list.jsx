@@ -19,13 +19,13 @@ class MoviesList extends React.PureComponent {
 
     return (<div className="catalog__movies-list">
       {movies.map((movie, i) => {
-        const {name, preview, id, link} = movie;
+        const {name, previewImage, id, previewVideoLink} = movie;
         return <MovieCardWrapped
           id={i}
           key={id}
           name={name}
-          preview={preview}
-          link={link}
+          previewImage={previewImage}
+          previewVideoLink={previewVideoLink}
           isPlaying={false}
           cardHeaderClickHandler={this.cardHeaderClickHandler}
         />;
@@ -41,17 +41,17 @@ MoviesList.propTypes = {
     director: PropTypes.string,
     genre: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool,
+    isFavorite: PropTypes.bool,
     name: PropTypes.string.isRequired,
-    poster: PropTypes.string,
-    preview: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
+    posterImage: PropTypes.string,
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
     rating: PropTypes.number,
-    date: PropTypes.number,
-    time: PropTypes.number,
+    released: PropTypes.number,
+    runTime: PropTypes.number,
     scoresCount: PropTypes.number,
-    actors: PropTypes.array,
-    video: PropTypes.string
+    starring: PropTypes.array,
+    videoLink: PropTypes.string
   })).isRequired
 };
 

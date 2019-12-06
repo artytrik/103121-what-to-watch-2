@@ -9,7 +9,7 @@ class MovieCard extends React.PureComponent {
   }
 
   render() {
-    const {name, preview, link, cardHeaderClickHandler, onEnter, onLeave, isActive} = this.props;
+    const {name, previewImage, previewVideoLink, cardHeaderClickHandler, onEnter, onLeave, isActive} = this.props;
 
     return <article className="small-movie-card catalog__movies-card"
       onMouseEnter={() => {
@@ -21,11 +21,11 @@ class MovieCard extends React.PureComponent {
       }}>
       <div className="small-movie-card__image">
         <VideoPlayer
-          src={link}
-          poster={preview}
+          src={previewVideoLink}
+          poster={previewImage}
           isPlaying={isActive}
         />
-        <img src={preview} alt={name} width="280" height="175" />
+        <img src={previewImage} alt={name} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="#"
@@ -38,8 +38,8 @@ class MovieCard extends React.PureComponent {
 MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  previewImage: PropTypes.string.isRequired,
+  previewVideoLink: PropTypes.string.isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
   onEnter: PropTypes.func,

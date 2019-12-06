@@ -6,11 +6,17 @@ const movies = [
   {
     id: 1,
     name: `Fantastic Beasts: The Crimes of Grindelwald`,
-    preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewImage: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     genre: `Comedy`
   }
 ];
+const userData = {
+  id: 1,
+  name: `Artem`,
+  email: `tema-luch`,
+  avatarUrl: `tema.jpg`
+};
 
 it(`Main correctly renders after relaunch`, () => {
   const tree = renderer
@@ -18,6 +24,8 @@ it(`Main correctly renders after relaunch`, () => {
       movies={movies}
       currentGenre={`All genres`}
       initialMovies={movies}
+      userData={userData}
+      isAuthorizationRequired={true}
     />, {
       createNodeMock: () => {
         return {};

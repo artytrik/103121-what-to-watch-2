@@ -10,8 +10,8 @@ it(`MoviesList correctly renders after relaunch`, () => {
           id: 1,
           name: `Fantastic Beasts: The Crimes of Grindelwald`,
           genre: `Comedy`,
-          preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-          link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+          previewImage: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+          previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
         }
       ]}
     />, {
