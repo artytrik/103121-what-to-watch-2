@@ -7,8 +7,8 @@ Enzyme.configure({adapter: new Adapter()});
 
 const movie = {
   name: `Fantastic Beasts: The Crimes of Grindelwald`,
-  preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+  previewImage: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 };
 
 it(`Header has been correctly clicked`, () => {
@@ -17,8 +17,8 @@ it(`Header has been correctly clicked`, () => {
   const movieCard = shallow(<MovieCard
     id = {1}
     name = {movie.name}
-    preview = {movie.preview}
-    link = {movie.link}
+    previewImage = {movie.previewImage}
+    previewVideoLink = {movie.previewVideoLink}
     cardHoverHandler = {jest.fn()}
     cardLeaveHandler = {jest.fn()}
     cardHeaderClickHandler = {clickHandler}

@@ -4,8 +4,7 @@ import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
 
 const Main = (props) => {
-  const {movies, initialMovies, clickFilterHandler, currentGenre} = props;
-
+  const {movies, initialMovies, clickFilterHandler, currentGenre, isAuthorizationRequired, userData} = props;
   return <div className="main-wrapper">
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -14,21 +13,37 @@ const Main = (props) => {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+      {isAuthorizationRequired ?
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+        <header className="page-header">
+          <div className="logo">
+            <a className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
           </div>
-        </div>
-      </header>
+
+          <div className="user-block">
+            <a href="sign-in.html" className="user-block__link">Sign in</a>
+          </div>
+        </header> :
+
+        <header className="page-header movie-card__head">
+          <div className="logo">
+            <a className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </a>
+          </div>
+
+          <div className="user-block">
+            <div className="user-block__avatar">
+              <img src={`https://htmlacademy-react-2.appspot.com${userData.avatarUrl}`} alt="User avatar" width="63" height="63" />
+            </div>
+          </div>
+        </header>}
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -101,7 +116,14 @@ Main.propTypes = {
   movies: PropTypes.array.isRequired,
   initialMovies: PropTypes.array.isRequired,
   clickFilterHandler: PropTypes.func,
-  currentGenre: PropTypes.string.isRequired
+  currentGenre: PropTypes.string.isRequired,
+  isAuthorizationRequired: PropTypes.bool.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    avatarUrl: PropTypes.string
+  }),
 };
 
 export default Main;

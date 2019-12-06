@@ -6,11 +6,18 @@ const movies = [
   {
     id: 1,
     name: `Fantastic Beasts: The Crimes of Grindelwald`,
-    preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewImage: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     genre: `Comedy`
   }
 ];
+
+const userData = {
+  id: 1,
+  name: `Artem`,
+  email: `tema-luch`,
+  avatarUrl: `tema.jpg`
+};
 
 it(`App correctly renders after relaunch`, () => {
   const tree = renderer
@@ -18,6 +25,9 @@ it(`App correctly renders after relaunch`, () => {
       moviesList={movies}
       initialMoviesList={movies}
       currentGenre={`All genres`}
+      userData={userData}
+      isAuthorizationRequired={true}
+      submitHandler={jest.fn()}
     />, {
       createNodeMock: () => {
         return {};

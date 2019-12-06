@@ -1,10 +1,27 @@
 const initialState = {
   genre: `All genres`,
   movies: [],
-  initialMovies: []
+  initialMovies: [],
+  isAuthorizationRequired: true,
+  userData: {}
 };
 
-const convertMovie = (movie) => {
+const convertKey = (key) => {
+  const arr = key.split(`_`).map((word, ind) => ind === 0 ? word : word[0].toUpperCase() + word.slice(1));
+  return arr.join(``);
+};
+
+const convertItem = (obj) => {
+  let newObj = {};
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      newObj[convertKey(key)] = obj[key];
+    }
+  }
+  return newObj;
+};
+/* const convertMovie = (movie) => {
   let convertedMovie = {};
   convertedMovie = {
     backgroundColor: movie.background_color,
@@ -16,8 +33,8 @@ const convertMovie = (movie) => {
     isFavourite: movie.is_favourite,
     name: movie.name,
     poster: movie.poster_image,
-    preview: movie.preview_image,
-    link: movie.preview_video_link,
+    previewImage: movie.previewImage_image,
+    previewVideoLink: movie.previewImage_video_link,
     rating: movie.rating,
     date: movie.released,
     time: movie.run_time,
@@ -25,16 +42,26 @@ const convertMovie = (movie) => {
     actors: movie.starring,
     video: movie.video_link
   };
-  return convertedMovie;
-};
+
+};*/
 
 const Operation = {
   loadMovies: () => (dispatch, _, api) => {
     return api.get(`films`)
       .then((response) => {
-        const convertedMovies = response.data.map((movie) => convertMovie(movie));
+        const convertedMovies = response.data.map((movie) => convertItem(movie));
         dispatch(ActionCreator.loadMovies(convertedMovies));
       });
+  },
+  login: (email, password) => (dispatch, _, api) => {
+    return api.post(`login`, {email, password})
+      .then((response) => {
+        if (response.data) {
+          dispatch(ActionCreator.setAuthorization(false));
+          dispatch(ActionCreator.enterUser(convertItem(response.data)));
+        }
+      })
+      .catch((_err) => {});
   }
 };
 
@@ -60,6 +87,16 @@ const ActionCreator = {
   getMoviesOnGenre: (genre) => ({
     type: `FILTER_MOVIES`,
     payload: genre
+  }),
+
+  setAuthorization: (boolean) => ({
+    type: `SET_AUTHORIZATION`,
+    payload: boolean
+  }),
+
+  enterUser: (userData) => ({
+    type: `GET_USER`,
+    payload: userData
   })
 };
 
@@ -75,6 +112,12 @@ const reducer = (state = initialState, action) => {
     case `FILTER_MOVIES`: return Object.assign({}, state, {
       movies: getMovies(action.payload, state.initialMovies),
       initialMovies: state.initialMovies
+    });
+    case `SET_AUTHORIZATION`: return Object.assign({}, state, {
+      isAuthorizationRequired: action.payload
+    });
+    case `GET_USER`: return Object.assign({}, state, {
+      userData: action.payload
     });
   }
 

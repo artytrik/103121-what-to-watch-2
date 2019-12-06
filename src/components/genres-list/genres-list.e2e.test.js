@@ -11,8 +11,8 @@ it(`Filter has been correctly clicked`, () => {
     movies={
       [{
         name: `Fantastic Beasts: The Crimes of Grindelwald`,
-        preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-        link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+        previewImage: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+        previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
       }]
     }
     initialMovies={
@@ -20,8 +20,8 @@ it(`Filter has been correctly clicked`, () => {
         id: 1,
         genre: `Comedy`,
         name: `Fantastic Beasts: The Crimes of Grindelwald`,
-        preview: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-        link: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+        previewImage: `/img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+        previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
       }]
     }
     clickFilterHandler={clickFilterHandler}
