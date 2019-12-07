@@ -4,23 +4,33 @@ import Main from '../main/main.jsx';
 import {connect} from 'react-redux';
 import {Operation, ActionCreator} from '../../reducer.js';
 import SignIn from '../sign-in/sign-in.jsx';
+import {Switch, Route} from 'react-router-dom';
 
 const App = (props) => {
   const {initialMoviesList, moviesList,
     clickFilterHandler, currentGenre, isAuthorizationRequired, submitHandler, userData} = props;
 
-  return isAuthorizationRequired ?
-    <SignIn
-      submitHandler={submitHandler}
-    /> :
-    <Main
-      movies={moviesList}
-      initialMovies={initialMoviesList}
-      clickFilterHandler={clickFilterHandler}
-      currentGenre={currentGenre}
-      userData={userData}
-      isAuthorizationRequired={isAuthorizationRequired}
-    />;
+  return <Switch>
+    <Route path="/" exact render={
+      () => {
+        return <Main
+          movies={moviesList}
+          initialMovies={initialMoviesList}
+          clickFilterHandler={clickFilterHandler}
+          currentGenre={currentGenre}
+          userData={userData}
+          isAuthorizationRequired={isAuthorizationRequired}
+        />;
+      }}>
+    </Route>
+    <Route path="/login" exact render={
+      () => {
+        return <SignIn
+          submitHandler={submitHandler}
+        />
+      }}>
+    </Route>
+  </Switch>
 };
 
 const mapStateToProps = (state) => ({

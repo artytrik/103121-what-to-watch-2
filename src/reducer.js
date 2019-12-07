@@ -21,29 +21,6 @@ const convertItem = (obj) => {
   }
   return newObj;
 };
-/* const convertMovie = (movie) => {
-  let convertedMovie = {};
-  convertedMovie = {
-    backgroundColor: movie.background_color,
-    backgroundImage: movie.background_image,
-    description: movie.description,
-    director: movie.director,
-    genre: movie.genre,
-    id: movie.id,
-    isFavourite: movie.is_favourite,
-    name: movie.name,
-    poster: movie.poster_image,
-    previewImage: movie.previewImage_image,
-    previewVideoLink: movie.previewImage_video_link,
-    rating: movie.rating,
-    date: movie.released,
-    time: movie.run_time,
-    scoresCount: movie.scores_count,
-    actors: movie.starring,
-    video: movie.video_link
-  };
-
-};*/
 
 const Operation = {
   loadMovies: () => (dispatch, _, api) => {

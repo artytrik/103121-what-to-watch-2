@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import configureApi from './api.js';
 import {applyMiddleware} from 'redux';
 import {compose} from 'recompose';
+import {BrowserRouter} from 'react-router-dom';
 
 const init = () => {
   const api = configureApi((...args) => store.dispatch(...args));
@@ -23,8 +24,9 @@ const init = () => {
   store.dispatch(Operation.loadMovies());
 
   ReactDOM.render(<Provider store={store}>
-    <App
-    />
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </Provider>,
   document.querySelector(`#root`)
   );
