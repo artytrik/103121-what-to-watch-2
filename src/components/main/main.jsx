@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
 import GenresList from '../genres-list/genres-list.jsx';
+import {Link} from 'react-router-dom';
 
 const Main = (props) => {
-  const {movies, initialMovies, clickFilterHandler, currentGenre, isAuthorizationRequired, userData} = props;
+  const {movies, initialMovies, clickFilterHandler, currentGenre,
+    isAuthorizationRequired, userData, clickFavoriteHandler, activeMovie} = props;
+  let currentMovie = {};
+  const result = initialMovies.filter((movie) => movie.id === activeMovie);
+  currentMovie = result.length > 0 ? result[0] : {};
+  console.log(currentMovie);
+
   return <div className="main-wrapper">
-    <section className="movie-card">
+      {activeMovie > 0 ? <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={currentMovie.previewImage} alt={currentMovie.name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +32,7 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <a href="sign-in.html" className="user-block__link">Sign in</a>
+            <Link to={`/login`} className="user-block__link">Sign in</Link>
           </div>
         </header> :
 
@@ -39,23 +46,25 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src={`https://htmlacademy-react-2.appspot.com${userData.avatarUrl}`} alt="User avatar" width="63" height="63" />
-            </div>
+            <Link to="/mylist">
+              <div className="user-block__avatar">
+                <img src={`https://htmlacademy-react-2.appspot.com${userData.avatarUrl}`} alt="User avatar" width="63" height="63" />
+              </div>
+            </Link>
           </div>
         </header>}
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={currentMovie.posterImage} alt={currentMovie.name} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+          <h2 className="movie-card__title">{currentMovie.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">Drama</span>
-              <span className="movie-card__year">2014</span>
+              <span className="movie-card__genre">{currentMovie.genre}</span>
+              <span className="movie-card__year">{currentMovie.year}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -65,17 +74,30 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              {
+                currentMovie.isFavorite ?
+                <button className="btn btn--list movie-card__button" type="button" onClick={() => {
+                  clickFavoriteHandler(activeMovie, !currentMovie.isFavorite);
+                }}>
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
+                  </svg>
+                  <span>My list</span>
+                </button>
+              :
+              <button className="btn btn--list movie-card__button" type="button" onClick={() => {
+                clickFavoriteHandler(activeMovie, !currentMovie.isFavorite)}}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
               </button>
+              }
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section> : ``}
 
     <div className="page-content">
       <section className="catalog">
@@ -124,6 +146,8 @@ Main.propTypes = {
     email: PropTypes.string,
     avatarUrl: PropTypes.string
   }),
+  clickFavoriteHandler: PropTypes.func.isRequired,
+  activeMovie: PropTypes.number.isRequired
 };
 
 export default Main;

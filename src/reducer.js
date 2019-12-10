@@ -3,7 +3,9 @@ const initialState = {
   movies: [],
   initialMovies: [],
   isAuthorizationRequired: true,
-  userData: {}
+  userData: {},
+  favorite: [],
+  activeMovie: 1
 };
 
 const convertKey = (key) => {
@@ -22,6 +24,26 @@ const convertItem = (obj) => {
   return newObj;
 };
 
+const setFavoriteStatus = (movies, id) => {
+  const result = movies.map((it) => {
+    if (it.id === id) {
+      let iit = {};
+      for (const key in it) {
+        if (it.hasOwnProperty(key)) {
+          if (key === `isFavorite`) {
+            iit[key] = !it[key];
+          } else {
+            iit[key] = it[key];
+          }
+        }
+      }
+      return iit;
+    }
+    return it;
+  });
+  return result;
+};
+
 const Operation = {
   loadMovies: () => (dispatch, _, api) => {
     return api.get(`films`)
@@ -36,6 +58,18 @@ const Operation = {
         if (response.data) {
           dispatch(ActionCreator.setAuthorization(false));
           dispatch(ActionCreator.enterUser(convertItem(response.data)));
+        }
+      })
+      .catch((_err) => {});
+  },
+  changeFavorite: (id, isFavorite) => (dispatch, _, api) => {
+    const status = isFavorite ? 1 : 0;
+    console.log(status);
+
+    return api.post(`favorite/${id}/${status}`)
+      .then((response) => {
+        if (response.data) {
+          dispatch(ActionCreator.setFavorite(id, isFavorite));
         }
       })
       .catch((_err) => {});
@@ -74,6 +108,16 @@ const ActionCreator = {
   enterUser: (userData) => ({
     type: `GET_USER`,
     payload: userData
+  }),
+
+  setFavorite: (id) => ({
+    type: `SET_FAVORITE`,
+    payload: id
+  }),
+
+  setActive: (id) => ({
+    type: `SET_ACTIVE`,
+    payload: id
   })
 };
 
@@ -95,6 +139,13 @@ const reducer = (state = initialState, action) => {
     });
     case `GET_USER`: return Object.assign({}, state, {
       userData: action.payload
+    });
+    case `SET_FAVORITE`: return Object.assign({}, state, {
+      movies: setFavoriteStatus(state.movies, action.payload),
+      initialMovies: setFavoriteStatus(state.initialMoviesm, action.payload)
+    });
+    case `SET_ACTIVE`: return Object.assign({}, state, {
+      activeMovie: action.payload
     });
   }
 

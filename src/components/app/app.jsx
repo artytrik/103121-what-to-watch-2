@@ -7,8 +7,8 @@ import SignIn from '../sign-in/sign-in.jsx';
 import {Switch, Route} from 'react-router-dom';
 
 const App = (props) => {
-  const {initialMoviesList, moviesList,
-    clickFilterHandler, currentGenre, isAuthorizationRequired, submitHandler, userData} = props;
+  const {initialMoviesList, moviesList, clickFilterHandler, currentGenre,
+    isAuthorizationRequired, submitHandler, userData, changeFavoriteHandler, activeMovie} = props;
 
   return <Switch>
     <Route path="/" exact render={
@@ -20,6 +20,8 @@ const App = (props) => {
           currentGenre={currentGenre}
           userData={userData}
           isAuthorizationRequired={isAuthorizationRequired}
+          clickFavoriteHandler={changeFavoriteHandler}
+          activeMovie={activeMovie}
         />;
       }}>
     </Route>
@@ -27,6 +29,7 @@ const App = (props) => {
       () => {
         return <SignIn
           submitHandler={submitHandler}
+          isAuthorizationRequired={isAuthorizationRequired}
         />
       }}>
     </Route>
@@ -38,7 +41,8 @@ const mapStateToProps = (state) => ({
   currentGenre: state.genre,
   initialMoviesList: state.initialMovies,
   isAuthorizationRequired: state.isAuthorizationRequired,
-  userData: state.userData
+  userData: state.userData,
+  activeMovie: state.activeMovie
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -48,6 +52,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   submitHandler: (email, password) => {
     dispatch(Operation.login(email, password));
+  },
+  changeFavoriteHandler: (id, isFavorite) => {
+    dispatch(Operation.changeFavorite(id, isFavorite));
   }
 });
 
@@ -63,7 +70,8 @@ App.propTypes = {
     email: PropTypes.string,
     avatarUrl: PropTypes.string
   }),
-  submitHandler: PropTypes.func.isRequired
+  submitHandler: PropTypes.func.isRequired,
+  activeMovie: PropTypes.number.isRequired
 };
 
 export {App};
